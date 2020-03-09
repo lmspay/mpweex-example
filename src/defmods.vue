@@ -44,9 +44,6 @@
                 {label: "存储 (Storage)", icon: "", windowTitle: "Storage", href: "/modules/storage.js"},
                 {label: "语言及地区 (Locale)", icon: "", windowTitle: "Locale", href: "/modules/locale.js"},
             ];
-            if("android" == WXEnvironment.platform) {
-                arrr.push({label: "权限 (Permissions)", icon: "", windowTitle: "Permissions", href: "/modules/permissions.js"});
-            }
             return {
                 defList: arrr
             }

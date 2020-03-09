@@ -19,7 +19,7 @@
             volume.get(function (res) {
                 self.value = parseFloat(res.volume);
                 self.value = Math.floor(self.value * 100) / 100;
-            });
+            }, 'music');
         },
         methods: {
             onBtnClicked(e) {
@@ -35,7 +35,7 @@
                         volume.set(self.value, function (res) {
                             self.value = parseFloat(res.volume);
                             self.value = Math.floor(self.value * 100) / 100;
-                        });
+                        }, 'music');
                         break;
                     case "1":
                         self.value -= 0.1;
@@ -46,7 +46,7 @@
                         volume.set(self.value, function (res) {
                             self.value = parseFloat(res.volume);
                             self.value = Math.floor(self.value * 100) / 100;
-                        });
+                        }, 'music');
                         break;
                 }
             }

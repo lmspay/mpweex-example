@@ -81,7 +81,7 @@
 
     .logo {
         width: 200px;
-        height: 185px;
+        height: 200px;
     }
 
     .index_btn_icon {
