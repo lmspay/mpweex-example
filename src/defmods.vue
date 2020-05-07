@@ -26,6 +26,7 @@
                 {label: "文档对象模型 (Dom)", icon: "", windowTitle: "Dom", href: "/modules/dom.js"},
                 {label: "动画 (Animation)", icon: "", windowTitle: "Animation", href: "/modules/animation.js"},
                 {label: "选择器 (Picker)", icon: "", windowTitle: "Picker", href: "/modules/picker.js"},
+                {label: "区域选择器 (AreaPicker)", icon: "", windowTitle: "AreaPicker", href: "/modules/areapicker.js"},
 
                 {label: "设备", isSplit: true},
                 {label: "屏幕 (Screen)", icon: "", windowTitle: "Screen", href: "/modules/screen.js"},
