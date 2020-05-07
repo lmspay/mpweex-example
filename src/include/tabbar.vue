@@ -39,6 +39,7 @@
     bottom: 0;
     margin-top: 0;
     margin-bottom: 88;
+    background-color: red;
   }
   .tabbar {
     flex-direction: row;

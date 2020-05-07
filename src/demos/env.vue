@@ -35,6 +35,10 @@
             <text class="value">{{appVersion}}</text>
         </div>
         <div class="group">
+            <text class="label">appVersionCode</text>
+            <text class="value">{{appVersionCode}}</text>
+        </div>
+        <div class="group">
             <text class="label">deviceModel</text>
             <text class="value">{{deviceModel}}</text>
         </div>
@@ -67,6 +71,7 @@
                 appId: invalid,
                 appName: invalid,
                 appVersion: invalid,
+                appVersionCode: invalid,
                 deviceModel: invalid,
                 deviceWidth: invalid,
                 deviceHeight: invalid,
@@ -90,6 +95,7 @@
                 this.appName = WXEnvironment.appName || unknown;
                 this.appId = WXEnvironment.appId || unknown;
                 this.appVersion = WXEnvironment.appVersion || unknown;
+                this.appVersionCode = WXEnvironment.appVersionCode || unknown;
                 this.deviceModel = WXEnvironment.deviceModel || unknown;
                 this.deviceWidth = WXEnvironment.deviceWidth || unknown;
                 this.deviceHeight = WXEnvironment.deviceHeight || unknown;
