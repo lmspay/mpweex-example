@@ -33,7 +33,7 @@
                 actionSheet.create({
                     'items':items,
                     'title':'提示',
-                    'message':'欢迎使用两码事小程序'
+                    'message':'欢迎使用MPWeex'
                 }, function (ret) {
                     var result = ret.result;
                     if(result == 'success') {

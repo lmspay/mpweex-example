@@ -7,7 +7,7 @@
               @click="hideMask" @visiblechanged="visiblechanged" class="mask" v-if="show">
             <div class="cc">
                 <image :src="logo" class="logo"/>
-                <text class="greeting">欢迎使用两码事小程序</text>
+                <text class="greeting">欢迎使用MPWeex</text>
             </div>
         </mask>
     </div>

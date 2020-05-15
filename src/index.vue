@@ -4,7 +4,7 @@
         <div></div>
         <div class="root">
             <image :src="logo" class="logo"/>
-            <text class="greeting">欢迎使用众圈小程序</text>
+            <text class="greeting">欢迎使用MPWeex</text>
 
             <div class="index_btn_root" style="margin-top: 60px">
                 <div class="index_btn_group" @click="jumpDefaultComponents">

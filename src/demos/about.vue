@@ -27,7 +27,7 @@
             <div class="sp"></div>
         </div>
 
-        <text :class="['btn','btn'+easterEgg]" @click="enterMP">进入小程序</text>
+        <text :class="['btn','btn'+easterEgg]" @click="enterMP">返回上一级</text>
     </div>
 </template>
 

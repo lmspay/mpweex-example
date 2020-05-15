@@ -1,6 +1,6 @@
 <template>
     <scroller class="info">
-        <text class="title">Mini Program Weex SDK Version</text>
+        <text class="title">MPWeex SDK Version</text>
         <text class="version">{{version}}</text>
         <div class="group">
             <text class="label">SDK Version Code</text>
