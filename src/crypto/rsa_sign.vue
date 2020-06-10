@@ -22,6 +22,13 @@
         <div class="pannel">
             <text class="content">{{urlSafeBase64Buf}}</text>
         </div>
+        <div class="title_root">
+            <div class="tdot"></div>
+            <text class="tlab">RSA Verify</text>
+        </div>
+        <div class="pannel">
+            <text class="content">{{verifyBuf}}</text>
+        </div>
         <div style="height: 40px;"></div>
     </scroller>
 </template>
@@ -30,6 +37,7 @@
     const crypto = weex.requireModule("crypto");
     module.exports = {
         data: {
+            verifyBuf: 'SDK版本太低，不支持',
             hexBuf: 'SDK版本太低，不支持',
             base64Buf: 'SDK版本太低，不支持',
             urlSafeBase64Buf: 'SDK版本太低，不支持',
@@ -61,26 +69,52 @@
                     "L8a5CLE0hrU6ANARvq+bAkAYXxf1CpMKjJAoT5Sx0jvCcQKZlS2fmoMfJjv/qy0h\n" +
                     "kmZro0KkK1TAB3QWUk3TPOe44YLk1/F13XWYeRIeg5g+\n" +
                     "-----END RSA PRIVATE KEY-----";
+                
+                let data = "B577CC007872F515A48E8BB0D508E1A6BD31C3723A591E7AAFF066D60798354B42C99F29" +
+                    "8DC6E2C88535B3B333B1880A86113E2BC37B25B5A8BB95C0066810763D9A58D0253E3FCA69982FBCB93940" +
+                    "2344DD3CB866F96A86CB252EDD5C30251E3CFD684AFF46EC50ECA3C198B70907BCD1345F9C6FC47207A11F" +
+                    "81B12DBAB3E7010001";
+
+                crypto.rsaSignOrVerify({
+                    algorithm: 'MD5WithRSA',
+                    pemkey: pemKey,
+                    forSigning: true,
+                    data: data,
+                    contentType: 'hex',
+                    resultType: resultType
+                }, (e) => {
+                    if(resultType == 'hex') {
+                        this.runVerify(e.data);
+                    }
+                    this[resultType + "Buf"] = e.data;
+                });
+            },
+            runVerify(ciphers) {
+                let pemKey = "-----BEGIN RSA PUBLIC KEY-----\n" +
+                    "MIGJAoGBALV3zAB4cvUVpI6LsNUI4aa9McNyOlkeeq/wZtYHmDVLQsmfKY3G4siF\n" +
+                    "NbOzM7GICoYRPivDeyW1qLuVwAZoEHY9mljQJT4/ymmYL7y5OUAjRN08uGb5aobL\n" +
+                    "JS7dXDAlHjz9aEr/RuxQ7KPBmLcJB7zRNF+cb8RyB6EfgbEturPnAgMBAAE=\n" +
+                    "-----END RSA PUBLIC KEY-----";
 
                 let data = "B577CC007872F515A48E8BB0D508E1A6BD31C3723A591E7AAFF066D60798354B42C99F29" +
                     "8DC6E2C88535B3B333B1880A86113E2BC37B25B5A8BB95C0066810763D9A58D0253E3FCA69982FBCB93940" +
                     "2344DD3CB866F96A86CB252EDD5C30251E3CFD684AFF46EC50ECA3C198B70907BCD1345F9C6FC47207A11F" +
-                    "81B12DBAB3E7010001"
-
-                crypto.rsa({
-                    algorithm: 'RSA/None/PKCS1Padding',
+                    "81B12DBAB3E7010001";
+                    
+                crypto.rsaSignOrVerify({
+                    algorithm: 'MD5WithRSA',
                     pemkey: pemKey,
-                    forEncryption: true,
+                    forSigning: false,
                     data: data,
-                    keyType: 'hex',
+                    signData: ciphers,
+                    signDataType: 'hex',
                     contentType: 'hex',
-                    resultType: resultType
+                    resultType: 'hex'
                 }, (e) => {
-                    // 检查hex输出
-                    if(resultType == 'hex' && e.data != '8E4D5AE64E9A01569C8610E8841A3502E9687ABC1F0240FD3CA2627EA8F31253E57944E7952BDA1A6ED7CC123E13166887585EC511D47E379B94332510AA8537C02B3DF0437ECC031CD0797BD229E220B2471ADA934F3499A5C1E1DCFC418DDF4B4FD4CD42229BD79B41F32F59529C00A455610A4AEF3EF855824CFF0CC93A0B1C6667842E36BD080DE5F774D8CC9F84A8511AE8B400C8B4DF9AB7E4DE87D2059377BB946F7E4E3AD1BFD5E32D048CB756B7D9A23849BC7CD0D44C420DD272D8168D9123D85A1604C2E5BB698A64FE5F8E252F86AA98EB4840621254FF3566F01A669300BE71EE1F5ADB1CCDE9A11CE6CEE19653780F58F6C0D3302E5E2A2F70') {
-                        this[resultType + "Buf"] = '计算异常\n期望值:8E4D5AE64E9A01569C8610E8841A3502E9687ABC1F0240FD3CA2627EA8F31253E57944E7952BDA1A6ED7CC123E13166887585EC511D47E379B94332510AA8537C02B3DF0437ECC031CD0797BD229E220B2471ADA934F3499A5C1E1DCFC418DDF4B4FD4CD42229BD79B41F32F59529C00A455610A4AEF3EF855824CFF0CC93A0B1C6667842E36BD080DE5F774D8CC9F84A8511AE8B400C8B4DF9AB7E4DE87D2059377BB946F7E4E3AD1BFD5E32D048CB756B7D9A23849BC7CD0D44C420DD272D8168D9123D85A1604C2E5BB698A64FE5F8E252F86AA98EB4840621254FF3566F01A669300BE71EE1F5ADB1CCDE9A11CE6CEE19653780F58F6C0D3302E5E2A2F70\n实际值:' + e.data;
+                    if(e.ok) {
+                        this.verifyBuf = '验签成功';
                     }else {
-                        this[resultType + "Buf"] = e.data;
+                        this.verifyBuf = '验签失败';
                     }
                 });
             }

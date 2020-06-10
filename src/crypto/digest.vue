@@ -1,43 +1,33 @@
 <template>
-    <scroller class="wrapper" show-scrollbar="false">
-        <div style="height: 40px;"></div>
+    <div class="wrapper">
         <div class="title_root">
             <div class="tdot"></div>
-            <text class="tlab">SM2 Plain</text>
-        </div>
-        <div class="pannel">
-            <text class="content">{{plainBuf}}</text>
-        </div>
-        <div class="title_root">
-            <div class="tdot"></div>
-            <text class="tlab">SM2 Hex</text>
+            <text class="tlab">MD5 Digest Hex</text>
         </div>
         <div class="pannel">
             <text class="content">{{hexBuf}}</text>
         </div>
         <div class="title_root">
             <div class="tdot"></div>
-            <text class="tlab">SM2 Base64</text>
+            <text class="tlab">MD5 Digest Base64</text>
         </div>
         <div class="pannel">
             <text class="content">{{base64Buf}}</text>
         </div>
         <div class="title_root">
             <div class="tdot"></div>
-            <text class="tlab">SM2 UrlSafeBase64</text>
+            <text class="tlab">MD5 Digest UrlSafeBase64</text>
         </div>
         <div class="pannel">
             <text class="content">{{urlSafeBase64Buf}}</text>
         </div>
-        <div style="height: 40px;"></div>
-    </scroller>
+    </div>
 </template>
 
 <script>
     const crypto = weex.requireModule("crypto");
     module.exports = {
         data: {
-            plainBuf: '',
             hexBuf: 'SDK版本太低，不支持',
             base64Buf: 'SDK版本太低，不支持',
             urlSafeBase64Buf: 'SDK版本太低，不支持',
@@ -46,7 +36,6 @@
         created() {
             if(parseInt(WXEnvironment.weexVersionCode) < 2802) {
                 // SDK版本太低
-                this.plainBuf = 'SDK版本太低，不支持';
                 return;
             }
             for(let idx in this.resultTypes) {
@@ -55,36 +44,17 @@
         },
         methods: {
             runAlg(resultType, outBuf) {
-                crypto.sm2({
-                    algorithm: 'SM2WithSM3/C1C2C3',
-                    key: '020148E6AF89A0E132E4E7CDA26DF2C2AEB53B741FD00AE85C78CF6EBA13E939B1',
-                    forEncryption: true,
-                    data: '616263',
-                    keyType: 'hex',
-                    contentType: 'hex',
+                crypto.digest({
+                    algorithm: 'MD5',
+                    data: 'abc',
+                    contentType: 'raw',
                     resultType: resultType
                 }, (e) => {
-                    if(resultType == 'hex') {
-                        this.runDecrypt(e.data);
-                    }
-                    this[resultType + "Buf"] = e.data;
-                });
-            },
-            runDecrypt(ciphers) {
-                crypto.sm2({
-                    algorithm: 'SM2WithSM3/C1C2C3',
-                    key: '6B8B4567327B23C6643C98696633487374B0DC5119495CFF2AE8944A625558EC',
-                    forEncryption: false,
-                    data: ciphers,
-                    keyType: 'hex',
-                    contentType: 'hex',
-                    resultType: 'hex'
-                }, (e) => {
                     // 检查hex输出
-                    if(e.data != '616263') {
-                        this.plainBuf = '计算异常\n期望值:616263\n实际值:' + e.data;
+                    if(resultType == 'hex' && e.data != '900150983CD24FB0D6963F7D28E17F72') {
+                        this[resultType + "Buf"] = '计算异常\n期望值:900150983CD24FB0D6963F7D28E17F72\n实际值:' + e.data;
                     }else {
-                        this.plainBuf = e.data;
+                        this[resultType + "Buf"] = e.data;
                     }
                 });
             }
@@ -94,13 +64,11 @@
 
 <style scoped>
     .wrapper {
-        background-color: white;
+        padding: 40px;
     }
     .title_root {
         flex-direction: row;
         align-items: center;
-        padding-left: 40px;
-        padding-right: 40px;
     }
     .tdot {
         width: 20px;
@@ -120,8 +88,6 @@
         background-color: #F2F2F2;
         border-radius: 10px;
         padding: 40px;
-        margin-left: 40px;
-        margin-right: 40px;
     }
     .content {
         font-size: 26px;

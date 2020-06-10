@@ -26,7 +26,7 @@
                 {label: "短信 (Sms)", icon: "", windowTitle: "Sms", href: "/modules/sms.js"},
                 {label: "邮件 (Email)", icon: "", windowTitle: "Email", href: "/modules/email.js"},
                 {label: "定位 (Geolocation)", icon: "", windowTitle: "Geolocation", href: "/modules/geolocation.js"},
-                // {label: "安全算法 (Crypto)", icon: "", windowTitle: "Crypto", href: "/crypto/index.js"},
+                {label: "密码算法 (Crypto)", icon: "", windowTitle: "Crypto", href: "/crypto/index.js"},
                 {label: "传感器", isSplit: true},
                 {label: "光线传感器 (Light)", icon: "", windowTitle: "Light", href: "/modules/light.js"},
                 {label: "距离传感器 (Proximity)", icon: "", windowTitle: "Proximity", href: "/modules/proximity.js"},
