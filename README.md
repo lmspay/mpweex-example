@@ -17,7 +17,7 @@ $ cd my-project && npm start
 Take `sass` for example:
 
 ```
-$ npm i node-sass sass-loader --save
+$ npm i -D sass-loader@7.3.1 node-sass
 ```
 
 Then, you just need to change the `style` tag as: `<style lang="sass"><style>`.
