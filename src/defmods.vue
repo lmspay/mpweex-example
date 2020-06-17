@@ -27,10 +27,16 @@
                 {label: "动画 (Animation)", icon: "", windowTitle: "Animation", href: "/modules/animation.js"},
                 {label: "选择器 (Picker)", icon: "", windowTitle: "Picker", href: "/modules/picker.js"},
                 {label: "区域选择器 (AreaPicker)", icon: "", windowTitle: "AreaPicker", href: "/modules/areapicker.js"},
-                {label: "选择地理位置 (Mappicker)", icon: "", windowTitle: "Mappicker", href: "/modules/mappicker.js"},
-                {label: "预览图片 (Photopreview)", icon: "", windowTitle: "Photopreview", href: "/modules/photopreview.js"},
-                {label: "图片选择器 (Photopicker)", icon: "", windowTitle: "Photopicker", href: "/modules/photopicker.js"},
-
+            ];
+            if(parseInt(WXEnvironment.weexVersionCode) >= 2802) {
+                arrr = arrr.concat([
+                    {label: "选择地理位置 (Mappicker)", icon: "", windowTitle: "Mappicker", href: "/modules/mappicker.js"},
+                    {label: "预览图片 (Photopreview)", icon: "", windowTitle: "Photopreview", href: "/modules/photopreview.js"},
+                    {label: "图片选择器 (Photopicker)", icon: "", windowTitle: "Photopicker", href: "/modules/photopicker.js"},
+                    {label: "地址选择器 (ChooseAddress)", icon: "", windowTitle: "ChooseAddress", href: "/modules/chooseaddress.js"},
+                ]);
+            }
+            arrr = arrr.concat([
                 {label: "设备", isSplit: true},
                 {label: "屏幕 (Screen)", icon: "", windowTitle: "Screen", href: "/modules/screen.js"},
                 {label: "振动 (Vibration)", icon: "", windowTitle: "Vibration", href: "/modules/vibration.js"},
@@ -47,7 +53,7 @@
                 {label: "粘贴板 (Clipboard)", icon: "", windowTitle: "Clipboard", href: "/modules/clipboard.js"},
                 {label: "存储 (Storage)", icon: "", windowTitle: "Storage", href: "/modules/storage.js"},
                 {label: "语言及地区 (Locale)", icon: "", windowTitle: "Locale", href: "/modules/locale.js"},
-            ];
+            ]);
             return {
                 defList: arrr
             }

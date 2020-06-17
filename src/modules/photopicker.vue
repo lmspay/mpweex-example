@@ -51,7 +51,7 @@
 						'message': '取消'
 					},
 					{
-						'type': 2,
+						'type': 0,
 						'message': '拍摄选择照片'
 					}
 				];

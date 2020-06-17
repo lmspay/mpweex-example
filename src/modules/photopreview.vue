@@ -32,6 +32,8 @@
 				var options = {
 					startIndex: index,
 					urls: this.listImage,
+					backgroundColor: '#FFFFFF',
+					tintColor: '#000000'
 				}
 				photopreview.show(options, event => {
 					if (event.result === 'success') {
