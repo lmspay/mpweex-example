@@ -39,6 +39,7 @@
 
 				}, e=> {
 					if(e.ok) {
+						console.log(JSON.stringify(e.data));
 						this.province = e.data.province;
 						this.city = e.data.city;
 						this.district = e.data.district;
